@@ -25,9 +25,9 @@
       .get('chat')
       .map(match)
       .once(async (data, id) => {
-        if (!data) {
-          return;
-        }
+        if (data) {
+
+
 
         var message = {
           // transform the data
@@ -36,15 +36,16 @@
           when: GUN.state.is(data, 'what'), // get the internal timestamp for the what property.
         };
 
-        if (!message.what) {
-          return;
+        if (message.what) {
+          // TODO Limit messages to 100
+          messages = [...messages, message].sort((a, b) => a.when - b.when);
+          scrollBottom.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }
 
         // message.when = new Date(message.when).toDateString() + ', ' + new Date(message.when).toLocaleTimeString();
 
-        // TODO Limit messages to 100
-        messages = [...messages, message].sort((a, b) => a.when - b.when);
-        scrollBottom.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+        }
       });
   });
 
@@ -67,7 +68,7 @@
 
 {#if $currentUser}
   <main>
-    {#each messages as message}
+    {#each messages as message (message.when)}
       <ChatMessage {message} currentUser={$currentUser} />
     {/each}
 

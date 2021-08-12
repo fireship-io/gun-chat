@@ -7,7 +7,7 @@ export const gun = GUN();
 
 export const currentUser = writable('');
 
-gun.user().recall({sessionStorage: true}).get('alias').then(v => currentUser.set(v))
+gun.user().recall({sessionStorage: true}).get('alias').on(v => currentUser.set(v))
 
 gun.on('auth', async(event) => {
     const username = await gun.user().get('alias')//.then()
@@ -15,6 +15,6 @@ gun.on('auth', async(event) => {
     currentUser.set(username)
 });
 
-gun.user().get('alias').on((data, key) => {
-    currentUser.set(data)
-})
+// gun.user().get('alias').on((data, key) => {
+//     currentUser.set(data)
+// })
