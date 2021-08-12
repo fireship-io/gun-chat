@@ -1,21 +1,9 @@
 <script>
-  import Login from './Login.svelte';
   import Chat from './Chat.svelte';
-  import Leave from './Leave.svelte';
-
-  import { gun, currentUser } from './user';
+  import Header from './Header.svelte';
 </script>
 
 <div class="app">
-  <header>
-    <h1>🔫💬</h1>
-    <Leave />
-  </header>
-
-  <section>
+    <Header />
     <Chat />
-  </section>
 </div>
-
-<style>
-</style>

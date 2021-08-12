@@ -6,6 +6,7 @@ import { writable } from 'svelte/store';
 export const gun = GUN();
 
 export const currentUser = writable('');
+export const avatarColor = writable('');
 
 gun.user().recall({sessionStorage: true}).get('alias').on(v => currentUser.set(v))
 
@@ -14,7 +15,3 @@ gun.on('auth', async(event) => {
     console.log(`signed in as ${username}`)
     currentUser.set(username)
 });
-
-// gun.user().get('alias').on((data, key) => {
-//     currentUser.set(data)
-// })

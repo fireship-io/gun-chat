@@ -1,0 +1,22 @@
+<script>
+  import { gun, currentUser } from './user';
+
+  function signout() {
+    gun.user().leave();
+    currentUser.set('');
+  }
+</script>
+
+<header>
+<h1>🔫💬</h1>
+  {#if $currentUser}
+    <div class="user-bio">
+      
+      <span>My name is <strong>{$currentUser}</strong></span>
+
+      <img src={`https://avatar.oxro.io/avatar.svg?name=${$currentUser}`} alt="avatar" />
+    </div>
+
+    <button on:click={signout}>Sign Out</button>
+  {/if}
+</header>

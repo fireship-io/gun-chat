@@ -26,25 +26,20 @@
       .map(match)
       .once(async (data, id) => {
         if (data) {
+          var message = {
+            // transform the data
+            who: await gun.user(data).get('alias'), // a user might lie who they are! So let the user system detect whose data it is.
+            what: (await SEA.decrypt(data.what, '#foo')) + '', // force decrypt as text.
+            when: GUN.state.is(data, 'what'), // get the internal timestamp for the what property.
+          };
 
+          if (message.what) {
+            // TODO Limit messages to 100
+            messages = [...messages, message].sort((a, b) => a.when - b.when);
+            setTimeout(() => scrollBottom.scrollIntoView({ behavior: 'smooth' }), 300);
+          }
 
-
-        var message = {
-          // transform the data
-          who: await gun.user(data).get('alias'), // a user might lie who they are! So let the user system detect whose data it is.
-          what: (await SEA.decrypt(data.what, '#foo')) + '', // force decrypt as text.
-          when: GUN.state.is(data, 'what'), // get the internal timestamp for the what property.
-        };
-
-        if (message.what) {
-          // TODO Limit messages to 100
-          messages = [...messages, message].sort((a, b) => a.when - b.when);
-          scrollBottom.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }
-
-        // message.when = new Date(message.when).toDateString() + ', ' + new Date(message.when).toLocaleTimeString();
-
-
+          // message.when = new Date(message.when).toDateString() + ', ' + new Date(message.when).toLocaleTimeString();
         }
       });
   });
@@ -62,26 +57,28 @@
     // const ref = gun.get('#chat').get(index).put(secret); // SEA, not GUN, will treat # records as immutable.
     // gun.user().get('all').set(ref); // index all messages they send!
     newMessage = '';
-    setTimeout(() => scrollBottom.scrollIntoView({ behavior: 'smooth' }), 100);
+    setTimeout(() => scrollBottom.scrollIntoView({ behavior: 'smooth' }), 1000);
   }
 </script>
 
-{#if $currentUser}
-  <main>
-    {#each messages as message (message.when)}
-      <ChatMessage {message} currentUser={$currentUser} />
-    {/each}
+<div class="container">
+  {#if $currentUser}
+    <main>
+      {#each messages as message (message.when)}
+        <ChatMessage {message} currentUser={$currentUser} />
+      {/each}
 
-    <div class="dummy" bind:this={scrollBottom} />
-  </main>
+      <div class="dummy" bind:this={scrollBottom} />
+    </main>
 
-  <form on:submit|preventDefault={sendMessage}>
-    <input type="text" placeholder="Type a message..." bind:value={newMessage} maxlength="100" />
+    <form on:submit|preventDefault={sendMessage}>
+      <input type="text" placeholder="Type a message..." bind:value={newMessage} maxlength="100" />
 
-    <button type="submit" disabled={!newMessage}>🕊️</button>
-  </form>
-{:else}
-  <main>
-    <Login />
-  </main>
-{/if}
+      <button type="submit" disabled={!newMessage}>🕊️</button>
+    </form>
+  {:else}
+    <main>
+      <Login />
+    </main>
+  {/if}
+</div>
