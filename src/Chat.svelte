@@ -4,11 +4,26 @@
   import { onMount } from 'svelte';
   import { gun, currentUser } from './user';
 
-  export let user;
-
   let newMessage;
   let messages = [];
+
   let scrollBottom;
+  let lastScrollTop;
+  let canAutoScroll = true;
+  let unreadMessages = false;
+
+
+  function autoScroll() {
+      setTimeout(() => scrollBottom?.scrollIntoView({ behavior: 'smooth' }), 100);
+      unreadMessages = false;
+  }
+
+  function watchScroll(e) {
+    console.log(e.target.scrollHeight, e.target.scrollTop);
+    canAutoScroll = lastScrollTop < e.target.scrollTop
+    lastScrollTop = e.target.scrollTop;
+  }
+
 
   onMount(() => {
     var match = {
@@ -35,8 +50,11 @@
 
           if (message.what) {
             // TODO Limit messages to 100
-            messages = [...messages, message].sort((a, b) => a.when - b.when);
-            setTimeout(() => scrollBottom.scrollIntoView({ behavior: 'smooth' }), 300);
+            messages = [...messages.slice(-100), message].sort((a, b) => a.when - b.when);
+            
+     
+            unreadMessages = true;
+            canAutoScroll && autoScroll()
           }
 
           // message.when = new Date(message.when).toDateString() + ', ' + new Date(message.when).toLocaleTimeString();
@@ -45,7 +63,6 @@
   });
 
   async function sendMessage() {
-    console.log(user);
     const secret = await SEA.encrypt(newMessage, '#foo');
     const message = gun.user().get('all').set({ what: secret });
     const index = new Date().toISOString();
@@ -57,13 +74,14 @@
     // const ref = gun.get('#chat').get(index).put(secret); // SEA, not GUN, will treat # records as immutable.
     // gun.user().get('all').set(ref); // index all messages they send!
     newMessage = '';
-    setTimeout(() => scrollBottom.scrollIntoView({ behavior: 'smooth' }), 1000);
+    console.log(canScroll)
   }
+
 </script>
 
 <div class="container">
   {#if $currentUser}
-    <main>
+    <main on:scroll={watchScroll}>
       {#each messages as message (message.when)}
         <ChatMessage {message} currentUser={$currentUser} />
       {/each}
@@ -76,6 +94,14 @@
 
       <button type="submit" disabled={!newMessage}>🕊️</button>
     </form>
+
+      <button class="scroll-button" on:click={autoScroll} class:red={unreadMessages}>
+        {#if unreadMessages}
+          New Messages
+        {/if}
+
+        👇
+      </button>
   {:else}
     <main>
       <Login />

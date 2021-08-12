@@ -1,8 +1,8 @@
 <script>
-  import { gun, currentUser } from './user';
+  import { gun, currentUser, user } from './user';
 
   function signout() {
-    gun.user().leave();
+    user.leave();
     currentUser.set('');
   }
 </script>
@@ -18,5 +18,9 @@
     </div>
 
     <button on:click={signout}>Sign Out</button>
+
+    {:else}
+
+      <h3>Decentrailized Chat with Gun.js</h3>
   {/if}
 </header>

@@ -44,23 +44,6 @@ input:disabled {
 	color: #ccc;
 }
 
-button {
-	color: #333;
-	background-color: #f4f4f4;
-	outline: none;
-}
-
-button:disabled {
-	color: #999;
-}
-
-button:not(:disabled):active {
-	background-color: #ddd;
-}
-
-button:focus {
-	border-color: #666;
-}
 
 body {
 	background-color: #282c34;
@@ -148,7 +131,7 @@ header {
   }
   
   button {
-	background-color: #282c34; /* Green */
+	background-color: #282c34; 
 	border: none;
 	color: white;
 	padding: 15px 32px;
@@ -159,11 +142,16 @@ header {
 	font-size: 1.25rem;
 	margin: 0;
   }
+
+  button:hover, button:active {
+	filter: brightness(0.9);
+  }
   
   button:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
   }
+
   
   
   .login {
@@ -245,4 +233,18 @@ header {
   .user-bio {
 	  display: flex;
 	  align-items: center;
+  }
+
+  .scroll-button {
+	  position: fixed;
+	  bottom: 50px;
+	  right: 50px;
+  }
+
+  .red {
+	background: rgb(204, 53, 37);
+  }
+
+  .dummy {
+	  order: 9999999999999;
   }

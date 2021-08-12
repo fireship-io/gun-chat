@@ -4,11 +4,12 @@ import { writable } from 'svelte/store';
 // import 'gun/axe';
 
 export const gun = GUN();
+export const user = gun.user().recall({sessionStorage: true});
 
 export const currentUser = writable('');
 export const avatarColor = writable('');
 
-gun.user().recall({sessionStorage: true}).get('alias').on(v => currentUser.set(v))
+user.get('alias').on(v => currentUser.set(v))
 
 gun.on('auth', async(event) => {
     const username = await gun.user().get('alias')//.then()

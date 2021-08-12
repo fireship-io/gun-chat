@@ -1,15 +1,15 @@
 <script>
-  import { gun, currentUser } from './user';
+  import { gun, user } from './user';
 
   let username;
   let password;
 
   function login() {
-    gun.user().auth(username, password, ({ err }) => err && alert(err));
+    user.auth(username, password, ({ err }) => err && alert(err));
   }
 
   function signup() {
-    gun.user().create(username, password, ({ err }) => {
+    user.create(username, password, ({ err }) => {
       if (err) {
         alert(err);
       } else {
@@ -20,7 +20,7 @@
 </script>
 
 <label for="username">Username</label>
-<input name="username" bind:value={username} />
+<input name="username" bind:value={username} minlength="3" maxlength="16" />
 
 <label for="password">Password</label>
 <input name="password" bind:value={password} type="password" />
