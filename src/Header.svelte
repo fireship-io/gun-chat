@@ -1,19 +1,19 @@
 <script>
-  import { gun, currentUser, user } from './user';
+  import { username, user } from './user';
 
   function signout() {
     user.leave();
-    currentUser.set('');
+    username.set('');
   }
 </script>
 
 <header>
 <h1>🔫💬</h1>
-  {#if $currentUser}
+  {#if $username}
     <div class="user-bio">
       
-      <span>My name is <strong>{$currentUser}</strong></span>
-      <img src={`https://avatars.dicebear.com/api/initials/${$currentUser}.svg`} alt="avatar" /> 
+      <span>My name is <strong>{$username}</strong></span>
+      <img src={`https://avatars.dicebear.com/api/initials/${$username}.svg`} alt="avatar" /> 
     </div>
 
     <button on:click={signout}>Sign Out</button>

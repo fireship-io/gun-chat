@@ -2,7 +2,7 @@
   import Login from './Login.svelte';
   import ChatMessage from './ChatMessage.svelte';
   import { onMount } from 'svelte';
-  import { gun, currentUser } from './user';
+  import { gun, username } from './user';
 
   let newMessage;
   let messages = [];
@@ -80,10 +80,10 @@
 </script>
 
 <div class="container">
-  {#if $currentUser}
+  {#if $username}
     <main on:scroll={watchScroll}>
       {#each messages as message (message.when)}
-        <ChatMessage {message} currentUser={$currentUser} />
+        <ChatMessage {message} sender={$username} />
       {/each}
 
       <div class="dummy" bind:this={scrollBottom} />

@@ -6,13 +6,12 @@ import 'gun/axe';
 export const gun = GUN();
 export const user = gun.user().recall({sessionStorage: true});
 
-export const currentUser = writable('');
-export const avatarColor = writable('');
+export const username = writable('');
 
-user.get('alias').on(v => currentUser.set(v))
+user.get('alias').on(v => username.set(v))
 
 gun.on('auth', async(event) => {
     const username = await gun.user().get('alias')//.then()
     console.log(`signed in as ${username}`)
-    currentUser.set(username)
+    username.set(username)
 });

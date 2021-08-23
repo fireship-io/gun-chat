@@ -1,9 +1,9 @@
 <script>
 
     export let message;
-    export let currentUser;
+    export let sender;
 
-    const messageClass = message.who === currentUser ? 'sent' : 'received';
+    const messageClass = message.who === sender ? 'sent' : 'received';
 
     const avatar = `https://avatars.dicebear.com/api/initials/${message.who}.svg`;
 
