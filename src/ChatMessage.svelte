@@ -5,7 +5,7 @@
 
     const messageClass = message.who === currentUser ? 'sent' : 'received';
 
-    const avatar = `https://avatar.oxro.io/avatar.svg?name=${message.who}`;
+    const avatar = `https://avatars.dicebear.com/api/initials/${message.who}.svg`;
 
     const ts = new Date(message.when);
 
@@ -17,6 +17,7 @@
     <img src={avatar} alt="avatar" />
     <div class="message-text">
         <p>{message.what}</p>
+        
         <time>{ts.toLocaleTimeString()}</time>
     </div>
 

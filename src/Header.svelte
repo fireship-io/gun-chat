@@ -13,8 +13,7 @@
     <div class="user-bio">
       
       <span>My name is <strong>{$currentUser}</strong></span>
-
-      <img src={`https://avatar.oxro.io/avatar.svg?name=${$currentUser}`} alt="avatar" />
+      <img src={`https://avatars.dicebear.com/api/initials/${$currentUser}.svg`} alt="avatar" /> 
     </div>
 
     <button on:click={signout}>Sign Out</button>

@@ -4,6 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -47,11 +48,7 @@ export default {
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
 
-		// If you have external dependencies installed from
-		// npm, you'll most likely need these plugins. In
-		// some cases you'll need additional configuration -
-		// consult the documentation for details:
-		// https://github.com/rollup/plugins/tree/master/packages/commonjs
+		nodePolyfills(), // required for gun.js
 		resolve({
 			browser: true,
 			dedupe: ['svelte']

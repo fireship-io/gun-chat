@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
-// import GUN from 'gun';
-// import 'gun/sea';
-// import 'gun/axe';
+import GUN from 'gun';
+import 'gun/sea';
+import 'gun/axe';
 
 export const gun = GUN();
 export const user = gun.user().recall({sessionStorage: true});
