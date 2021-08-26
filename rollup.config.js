@@ -4,7 +4,6 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
-import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -48,7 +47,6 @@ export default {
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
 
-		nodePolyfills(), // required for gun.js
 		resolve({
 			browser: true,
 			dedupe: ['svelte']

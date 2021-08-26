@@ -3,15 +3,20 @@ import GUN from 'gun';
 import 'gun/sea';
 import 'gun/axe';
 
-export const gun = GUN();
-export const user = gun.user().recall({sessionStorage: true});
+// Database
+export const db = GUN();
 
+// Gun User
+export const user = db.user().recall({sessionStorage: true});
+
+// Current User's username
 export const username = writable('');
 
 user.get('alias').on(v => username.set(v))
 
-gun.on('auth', async(event) => {
-    const username = await gun.user().get('alias')//.then()
-    console.log(`signed in as ${username}`)
-    username.set(username)
+db.on('auth', async(event) => {
+    const alias = await db.user().get('alias'); // username string
+    username.set(alias);
+
+    console.log(`signed in as ${alias}`);
 });
