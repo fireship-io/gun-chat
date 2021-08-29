@@ -2,7 +2,7 @@
   import Login from './Login.svelte';
   import ChatMessage from './ChatMessage.svelte';
   import { onMount } from 'svelte';
-  import { username } from './user';
+  import { username, user } from './user';
 
   import GUN from 'gun';
   const db = GUN();
@@ -21,7 +21,6 @@
   }
 
   function watchScroll(e) {
-    console.log(e.target.scrollHeight, e.target.scrollTop);
     canAutoScroll = lastScrollTop < e.target.scrollTop;
     lastScrollTop = e.target.scrollTop;
   }
@@ -66,15 +65,9 @@
 
   async function sendMessage() {
     const secret = await SEA.encrypt(newMessage, '#foo');
-    const message = db.user().get('all').set({ what: secret });
+    const message = user.get('all').set({ what: secret });
     const index = new Date().toISOString();
     db.get('chat').get(index).put(message);
-
-    // const hash = await SEA.work(secret, null, null, {name: "SHA-256"});
-    // const index = (new Date).toISOString() + ('#'+hash); // index by time with hash.
-
-    // const ref = gun.get('#chat').get(index).put(secret); // SEA, not GUN, will treat # records as immutable.
-    // gun.user().get('all').set(ref); // index all messages they send!
     newMessage = '';
   }
 </script>
