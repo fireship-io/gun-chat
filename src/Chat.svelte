@@ -3,6 +3,7 @@
   import ChatMessage from './ChatMessage.svelte';
   import { onMount } from 'svelte';
   import { username, user } from './user';
+  import debounce from 'lodash.debounce';
 
   import GUN from 'gun';
   const db = GUN();
@@ -16,14 +17,17 @@
   let unreadMessages = false;
 
   function autoScroll() {
-    setTimeout(() => scrollBottom?.scrollIntoView({ behavior: 'smooth' }), 100);
+    setTimeout(() => scrollBottom?.scrollIntoView({ behavior: 'auto' }), 50);
     unreadMessages = false;
   }
 
   function watchScroll(e) {
-    canAutoScroll = lastScrollTop < e.target.scrollTop;
+    console.log(e.target.scrollTop, lastScrollTop);
+    canAutoScroll = (e.target.scrollTop || Infinity) > lastScrollTop;
     lastScrollTop = e.target.scrollTop;
   }
+
+  $: debouncedWatchScroll = debounce(watchScroll, 1000);
 
   onMount(() => {
     var match = {
@@ -36,28 +40,27 @@
     };
 
     // Get Messages
-    db
-      .get('chat')
+    db.get('chat')
       .map(match)
       .once(async (data, id) => {
         if (data) {
-
           // Key for end-to-end encryption
           const key = '#foo';
 
           var message = {
             // transform the data
             who: await db.user(data).get('alias'), // a user might lie who they are! So let the user system detect whose data it is.
-            what: (await SEA.decrypt(data.what, '#foo')) + '', // force decrypt as text.
+            what: (await SEA.decrypt(data.what, key)) + '', // force decrypt as text.
             when: GUN.state.is(data, 'what'), // get the internal timestamp for the what property.
           };
 
           if (message.what) {
-            // TODO Limit messages to 100
             messages = [...messages.slice(-100), message].sort((a, b) => a.when - b.when);
-
-            unreadMessages = true;
-            canAutoScroll && autoScroll();
+            if (canAutoScroll) {
+              autoScroll();
+            } else {
+              unreadMessages = true;
+            }
           }
         }
       });
@@ -69,12 +72,14 @@
     const index = new Date().toISOString();
     db.get('chat').get(index).put(message);
     newMessage = '';
+    canAutoScroll = true;
+    autoScroll();
   }
 </script>
 
 <div class="container">
   {#if $username}
-    <main on:scroll={watchScroll}>
+    <main on:scroll={debouncedWatchScroll}>
       {#each messages as message (message.when)}
         <ChatMessage {message} sender={$username} />
       {/each}
@@ -88,13 +93,15 @@
       <button type="submit" disabled={!newMessage}>💥</button>
     </form>
 
-    <button class="scroll-button" on:click={autoScroll} class:red={unreadMessages}>
-      {#if unreadMessages}
-        New Messages
-      {/if}
+    <div class="scroll-button">
+      <button on:click={autoScroll} class:red={unreadMessages}>
+        {#if unreadMessages}
+          💬
+        {/if}
 
-      👇
-    </button>
+        👇
+      </button>
+    </div>
   {:else}
     <main>
       <Login />

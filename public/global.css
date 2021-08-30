@@ -7,7 +7,6 @@ html, body {
 body {
 	color: #333;
 	margin: 0;
-	padding: 8px;
 	box-sizing: border-box;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	overflow: hidden;
@@ -82,9 +81,7 @@ header {
   }
   
   main {
-	padding: 1rem;
 	height: 80vh;
-	/* margin: 10vh 0 10vh; */
 	overflow-y: scroll;
 	display: flex;
 	flex-direction: column;
@@ -184,6 +181,7 @@ header {
 	display: flex;
 	align-items: center;
 	margin: 0;
+	word-wrap:break-word;
   }
   
   
@@ -238,14 +236,16 @@ header {
 
   .scroll-button {
 	  position: fixed;
-	  bottom: 50px;
-	  right: 50px;
+	  bottom: 70px;
+	  right: 20px;
+	  color: white;
   }
 
   .red {
 	background: rgb(204, 53, 37);
   }
 
-  .dummy {
-	  order: 9999999999999;
+  .signout-button {
+	  font-size: 0.8rem;
+	  padding: 0.5rem 1rem;
   }
