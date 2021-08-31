@@ -1,9 +1,9 @@
-# Gun.js Demo
+# GUN Chat Dapp Demo
 
-A decentralized chat app build with [Gun.js](). 
+A decentralized chat app built with [GUN](https://gun.eco/). 
 
-- Try the [Live Demo]()
-- Watch the [Chat Dapp Video]()
+- Try the [Live Demo](https://gun-chat-dapp.web.app/)
+- Watch the [Chat Dapp Video](https://youtu.be/J5x3OMXjgMc)
 
 ```
 git clone <this-repo>

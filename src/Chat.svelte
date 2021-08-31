@@ -22,7 +22,6 @@
   }
 
   function watchScroll(e) {
-    console.log(e.target.scrollTop, lastScrollTop);
     canAutoScroll = (e.target.scrollTop || Infinity) > lastScrollTop;
     lastScrollTop = e.target.scrollTop;
   }
@@ -93,6 +92,8 @@
       <button type="submit" disabled={!newMessage}>💥</button>
     </form>
 
+
+    {#if !canAutoScroll}
     <div class="scroll-button">
       <button on:click={autoScroll} class:red={unreadMessages}>
         {#if unreadMessages}
@@ -102,6 +103,7 @@
         👇
       </button>
     </div>
+   {/if}
   {:else}
     <main>
       <Login />
