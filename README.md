@@ -2,7 +2,7 @@
 
 A decentralized chat app built with [GUN](https://gun.eco/).
 
-- Try the [Live Demo](https://gun-chat-dapp.web.app/)
+- Try the [Live Demo](https://dapp-chat.netlify.app/)
 - Watch the [Chat Dapp Video](https://youtu.be/J5x3OMXjgMc)
 
 ## fork changelog
