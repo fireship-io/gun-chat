@@ -1,251 +1,254 @@
-html, body {
-	position: relative;
-	width: 100%;
-	height: 100%;
+@import url("https://fonts.googleapis.com/css2?family=Lalezar&display=swap");
+html,
+body {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-	color: #333;
-	margin: 0;
-	box-sizing: border-box;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	overflow: hidden;
+  color: #333;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Lalezar", cursive;
+  overflow: hidden;
 }
 
 a {
-	color: rgb(0,100,200);
-	text-decoration: none;
+  color: rgb(0, 100, 200);
+  text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 a:visited {
-	color: rgb(0,80,160);
+  color: rgb(0, 80, 160);
 }
 
 label {
-	display: block;
+  display: block;
+  font-size: 20px;
 }
 
-input, button, select, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	-webkit-padding: 0.4em 0;
-	padding: 0.4em;
-	margin: 0 0 0.5em 0;
-	box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-radius: 2px;
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-padding: 0.4em 0;
+  padding: 0.4em;
+  margin: 0 0 0.5em 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 2px;
 }
 
 input:disabled {
-	color: #ccc;
+  color: #ccc;
 }
-
 
 body {
-	background-color: #282c34;
-  }
-  
-.app {
-	text-align: center;
-	max-width: 728px;
-	margin: 0 auto;
-  }
-  
-header {
-	background-color: #181717;
-	height: 10vh;
-	min-height: 50px;
-	color: white;
-	position: fixed;
-	width: 100%;
-	max-width: 728px;
-	top: 0;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	z-index: 99;
-	padding: 10px;
-	box-sizing: border-box;
-  }
-  
-.container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	min-height: 100vh;
-	background-color: rgb(40, 37, 53);
-  }
-  
-  main {
-	height: 80vh;
-	overflow-y: scroll;
-	display: flex;
-	flex-direction: column;
-  }
-  
-  main::-webkit-scrollbar {
-	width: 0.25rem;
-  }
-  
-  main::-webkit-scrollbar-track {
-	background: #1e1e24;
-  }
-  
-  main::-webkit-scrollbar-thumb {
-	background: #6649b8;
-  }
-  
-  form {
-	height: 8vh;
-	position: fixed;
-	bottom: 0;
-	background-color: rgb(24, 23, 23);
-	width: 100%;
-	max-width: 728px;
-	display: flex;
-	font-size: 1.5rem;
-  }
-  
-  form button {
-	width: 20%;
-	background-color: rgb(72, 207, 79);
-  }
-  
-  
-  input {
-	line-height: 1.5;
-	width: 100%;
-	font-size: 1.5rem;
-	background: rgb(58, 58, 58);
-	color: white;
-	outline: none;
-	border: none;
-	padding: 0 10px;
-	margin: 0;
-  }
-  
-  button {
-	background-color: #282c34; 
-	border: none;
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	cursor: pointer;
-	font-size: 1.25rem;
-	margin: 0;
-  }
-
-  button:hover, button:active {
-	filter: brightness(0.9);
-  }
-  
-  button:disabled {
-	opacity: 0.5;
-	cursor: not-allowed;
-  }
-
-  
-  
-  .login {
-	margin: 1rem 0 0;
-	background: #1a1520;
-  }
-  
-  label {
-	  color: white;
-	  margin: 0.5rem 0;
-  }
-  ul, li {
-	text-align: left;
-	list-style: none;
-  }
-  
-  p {
-	max-width: 500px;
-	margin-bottom: 0;
-	line-height: 24px;
-	padding: 10px 20px;
-	border-radius: 25px;
-	position: relative;
-	color: white;
-	text-align: center;
-  }
-  
-  .message {
-	display: flex;
-	align-items: center;
-	margin: 0;
-	word-wrap:break-word;
-  }
-  
-  
-  .sent {
-	flex-direction: row-reverse;
-  }
-  
-  .sent p {
-	color: white;
-	background: #0b93f6;
-	align-self: flex-end;
-	text-align: right;
-  }
-  .received p {
-	background: #e5e5ea;
-	color: black;
-	text-align: left;
-  }
-
-  .message-text {
-	  display: flex;
-	  flex-direction: column;
-	  align-items: flex-end;
-  }
-
-  .received .message-text {
-	align-items: flex-start;
+  background-color: #282c34;
 }
 
-  time {
-	  color: white;
-	  font-size: 0.7rem;
-	  color: #9a9a9a;
-	  margin: 0 1rem;
-  }
-  
-  img {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	margin: 2px 5px;
-  }
+.app {
+  text-align: right;
+  max-width: 728px;
+  margin: 0 auto;
+}
 
-  .message:last-child {
-	  margin-bottom: 20px;
-  }
+header {
+  background-color: #181717;
+  height: 10vh;
+  min-height: 50px;
+  color: white;
+  position: fixed;
+  width: 100%;
+  max-width: 728px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 99;
+  padding: 10px;
+  box-sizing: border-box;
+}
 
-  .user-bio {
-	  display: flex;
-	  align-items: center;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f6e58d;
+}
 
-  .scroll-button {
-	  position: fixed;
-	  bottom: 70px;
-	  right: 20px;
-	  color: white;
-  }
+main {
+  height: 80vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
 
-  .red {
-	background: rgb(204, 53, 37);
-  }
+main::-webkit-scrollbar {
+  width: 0.25rem;
+}
 
-  .signout-button {
-	  font-size: 0.8rem;
-	  padding: 0.5rem 1rem;
-  }
+main::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: #6649b8;
+}
+
+form {
+  height: 8vh;
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(24, 23, 23);
+  width: 100%;
+  max-width: 728px;
+  display: flex;
+  font-size: 1.5rem;
+}
+
+form button {
+  width: 20%;
+  background-color: black;
+}
+
+input {
+  line-height: 1.5;
+  width: 100%;
+  font-size: 1.5rem;
+  background: rgb(58, 58, 58);
+  color: white;
+  outline: none;
+  border: none;
+  padding: 0 10px;
+  margin: 0;
+}
+
+button {
+  background-color: #282c34;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+button:hover,
+button:active {
+  filter: brightness(0.9);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.login {
+  margin: 1rem 0 0;
+  background: #1a1520;
+}
+
+label {
+  color: black;
+  margin: 0.5rem 2rem;
+}
+ul,
+li {
+  text-align: left;
+  list-style: none;
+}
+
+p {
+  max-width: 500px;
+  margin-bottom: 0;
+  line-height: 24px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.sent {
+  flex-direction: row-reverse;
+}
+
+.sent p {
+  color: white;
+  background: grey;
+  align-self: flex-end;
+  text-align: right;
+}
+.received p {
+  background: #e5e5ea;
+  color: black;
+  text-align: left;
+}
+
+.message-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.received .message-text {
+  align-items: flex-start;
+}
+
+time {
+  color: white;
+  font-size: 0.7rem;
+  color: #9a9a9a;
+  margin: 0 1rem;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 2px 5px;
+}
+
+.message:last-child {
+  margin-bottom: 20px;
+}
+
+.user-bio {
+  display: flex;
+  align-items: center;
+}
+
+.scroll-button {
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  color: white;
+}
+
+.red {
+  background: rgb(204, 53, 37);
+}
+
+.signout-button {
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+}

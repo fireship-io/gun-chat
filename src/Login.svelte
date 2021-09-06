@@ -1,5 +1,5 @@
 <script>
-  import { user } from './user';
+  import { user } from "./user";
 
   let username;
   let password;
@@ -19,12 +19,11 @@
   }
 </script>
 
-<label for="username">Username</label>
+<label for="username">الاسم</label>
 <input name="username" bind:value={username} minlength="3" maxlength="16" />
 
-<label for="password">Password</label>
+<label for="password">الباسوورد</label>
 <input name="password" bind:value={password} type="password" />
 
-<button class="login" on:click={login}>Login</button>
-<button class="login"  on:click={signup}>Sign Up</button>
-  
+<button class="login" on:click={login}>تسجيل دخول</button>
+<button class="login" on:click={signup}>انشاء حساب</button>

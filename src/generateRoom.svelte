@@ -17,41 +17,50 @@
   }
 </script>
 
-<h2>app info</h2>
+<h2>معلومات التطبيق</h2>
 <ul>
   <li>
-    <span>*</span> uses decentralized database so all your data is safe from our
-    lizard overloads
+    <span> * </span> يستخدم قاعدة البيانات اللامركزية بحيث تكون جميع بياناتك في مأمن
+    من الجميع
   </li>
   <li>
-    <span>*</span>
-    data is persisted but not stored in any server and cant be accesed by us
+    <span> * </span>
+    يتم الاحتفاظ بالبيانات ولكن لا يتم تخزينها في أي خادم ولا يمكن الوصول إليها من
+    قبلنا
   </li>
   <li>
-    <span>*</span>
-    data depends on users being active so might not be avaiblabne 24/7 or forever
+    <span> * </span>
+    تعتمد البيانات على المستخدمين النشطين ، لذلك قد لا تكون متوفرة على مدار الساعة
+    طوال أيام الأسبوع أو إلى الأبد
   </li>
 </ul>
 <input bind:value={generatedUrl} />
-<button class="login" on:click={generate}>generate room</button>
+<button class="login" on:click={generate}>انشىء غرفة</button>
 {#if generatedUrl}
-  <h3 style="color: white;">
-    share this link with a friend or more and visit it to start chatting!
-  </h3>
+  <h3>شارك هذا الرابط مع اصحابك</h3>
 {/if}
 
 <style>
   * {
-    color: white;
+    direction: rtl;
+  }
+  p,
+  li {
+    color: black;
   }
   ul {
     margin-bottom: 40px;
   }
+  ul,
+  li {
+    text-align: right;
+  }
   span {
     color: tomato;
   }
-  h2 {
-    margin-left: 36px;
+  h2,
+  h3 {
+    margin-right: 36px;
     text-align: start;
   }
 </style>

@@ -95,12 +95,12 @@
       <form on:submit|preventDefault={sendMessage}>
         <input
           type="text"
-          placeholder="Type a message..."
+          placeholder="اكتب رسالة"
           bind:value={newMessage}
           maxlength="100"
         />
 
-        <button type="submit" disabled={!newMessage}>💥</button>
+        <button type="submit" disabled={!newMessage}>ارسال</button>
       </form>
 
       {#if !canAutoScroll}
