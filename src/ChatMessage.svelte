@@ -12,7 +12,7 @@
 <div class={`message ${messageClass}`}>
   <img src={avatar} alt="avatar" />
   <div class="message-text">
-    <p>{message.what}</p>
+    <p>{message.who}<br />{message.what}</p>
 
     <time>{ts.toLocaleTimeString()}</time>
   </div>
