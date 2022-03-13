@@ -10,7 +10,7 @@
 </script>
 
 <div class={`message ${messageClass}`}>
-  <img src={avatar} alt="avatar" />
+  <img src={avatar} alt="avatar" title={message.who}/>
   <div class="message-text">
     <p>{message.what}</p>
 
